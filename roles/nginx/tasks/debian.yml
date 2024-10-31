@@ -32,12 +32,12 @@
 - name: Start nginx Service, then get package facts and publish them to the default page
   block:
 
-  - name: Include common tasks
-    ansible.builtin.include_tasks: generic.yml
+    - name: Include common tasks
+      ansible.builtin.include_tasks: generic.yml
 
-  - name: Copy the new welcome web page
-    become: true
-    ansible.builtin.template:
-      src: index.html.j2
-      dest: "{{ nginx_debian_welcome_page_path }}/index.html"
-      mode: "0644"
+    - name: Copy the new welcome web page
+      become: true
+      ansible.builtin.template:
+        src: index.html.j2
+        dest: "{{ nginx_debian_welcome_page_path }}/index.html"
+        mode: "0644"
