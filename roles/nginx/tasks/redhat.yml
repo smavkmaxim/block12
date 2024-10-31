@@ -2,7 +2,6 @@
 # roles/nginx/tasks/redhat.yml
 - name: Nginx installation
   block:
-
   - name: Add Nginx repository on CentOS/RHEL
     become: true
     ansible.builtin.yum_repository:
