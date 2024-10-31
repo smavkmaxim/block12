@@ -13,6 +13,7 @@
       repo: "deb http://nginx.org/packages/{{ ansible_distribution|lower }}/ {{ ansible_distribution_release }} nginx"
   - name: Install Nginx on Debian/Ubuntu latest version
     become: true
+# noqa package-latest
     ansible.builtin.apt:
       name: nginx
       state: latest

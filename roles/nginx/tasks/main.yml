@@ -1,7 +1,7 @@
 ---
 # tasks file for nginx
 - name: Сollecting only the necessary facts
-  setup:
+  ansible.builtin.setup:
     filter:
       - os_family
       - ansible_distribution

@@ -1,13 +1,13 @@
 ---
 # roles/nginx/tasks/generic.yml
-- name: nginx generic tasks
+- name: Nginx generic tasks
   block:
   - name: Start Nginx service
-    become: yes
-    service:
+    become: true
+    ansible.builtin.service:
       name: nginx
       state: started
-      enabled: yes
+      enabled: true
   - name: Gather the package facts
     ansible.builtin.package_facts:
       manager: auto

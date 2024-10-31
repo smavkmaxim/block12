@@ -4,7 +4,7 @@
   block:
 
   - name: Add Nginx repository on CentOS/RHEL
-    become: yes
+    become: true
     ansible.builtin.yum_repository:
       name: nginx
       description: Official Nginx repository
@@ -13,14 +13,15 @@
       gpgkey: https://nginx.org/keys/nginx_signing.key
       enabled: true
   - name: Install Nginx on CentOS/RHEL latest version
-    become: yes
+    become: true
+# noqa package-latest
     ansible.builtin.dnf:
       name: nginx
       state: latest
       update_cache: true
     when: nginx_redhat_nginx_version == ""
   - name: Install Nginx on CentOS/RHEL sepsific version {{ nginx_redhat_nginx_version }}
-    become: yes
+    become: true
     ansible.builtin.dnf:
       name: "nginx-{{ nginx_redhat_nginx_version }}"
       state: present
@@ -34,7 +35,8 @@
     ansible.builtin.include_tasks: generic.yml
 
   - name: Copy the new welcome web page
-    become: yes
+    become: true
     ansible.builtin.template:
       src: index.html.j2
       dest: "{{ nginx_redhat_welcome_page_path }}/index.html"
+      mode: "0644"
